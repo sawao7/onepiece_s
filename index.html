@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- 自動翻訳させない -->
+        <meta http-equiv="Content-Language" content="ja" />
+        <meta name="google" content="notranslate" />
+        <title>ONE PIECE</title>
+        <!-- ファビコン設定 -->
+        <link
+            rel="icon"
+            type="image/x-icon"
+            href="https://image.yodobashi.com/product/100/000/001/003/719/875/100000001003719875_10203.jpg"
+        />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Sawarabi+Mincho&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Pinyon+Script&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Allura&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Courgette&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            rel="stylesheet"
+            href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"
+            integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu"
+            crossorigin="anonymous"
+        />
+        <link rel="stylesheet" href="css/style.css" />
+        <link rel="stylesheet" href="css/game_style.css" />
+    </head>
+    <body>
+        <header>
+            <div class="header_top fade slidein">
+                <div class="header_left">
+                    <a href="#"
+                        ><img
+                            src="https://www.cospa.com/images/items/pc/19195.jpg"
+                            class="header_left_logo"
+                    /></a>
+                </div>
+                <div class="header_middle">
+                    <img
+                        src="https://my-live-01.slatic.net/p/d1102268570ae06b6d2027f897b2bc19.jpg"
+                        class="header_middle_logo"
+                    />
+                </div>
+                <div class="header_right">
+                    <ul class="header_right_ul">
+                        <li class="header_right_li"><a href="#">TOP</a></li>
+                        <li class="header_right_li">
+                            <a href="#main" class="play_btn">PLAY</a>
+                        </li>
+                        <li class="header_right_li">
+                            <a href="#">INTO</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="header_main fade_low">
+                <img
+                    src="https://upload.wikimedia.org/wikipedia/en/thumb/2/2c/One_Piece_Logo.svg/1200px-One_Piece_Logo.svg.png"
+                    class="header_main_logo fade_low_low"
+                />
+                <div>
+                    <a href="#main" class="play_btn btn slide-bg slidebtn"
+                        >PLAY</a
+                    >
+                </div>
+            </div>
+        </header>
+        <div class="main" id="main">
+            <div class="main_container">
+                <div class="contents">
+                    <div class="close"><i class="fas fa-times"></i></div>
+                    <img
+                        src="https://i.pinimg.com/originals/65/eb/70/65eb70a4aad8ceb926b44cc4d6e7fdd9.jpg"
+                        class="end_image bigger"
+                    />
+                    <img
+                        src="https://upload.wikimedia.org/wikipedia/en/thumb/2/2c/One_Piece_Logo.svg/1200px-One_Piece_Logo.svg.png"
+                        class="main_image"
+                    />
+                    <button class="btn slide-bg" id="start_button">
+                        PLAY GAME
+                    </button>
+                    <div id="timer"></div>
+                    <div id="continuous"><i class="fas fa-star"></i></div>
+                    <div id="count"></div>
+                    <div class="display">
+                        <h1><div id="japanese" class="wide"></div></h1>
+                        <h2><div id="word" class="fade"></div></h2>
+                    </div>
+                    <!-- スコア全体 -->
+                    <div class="scores fade">
+                        <!-- スコア表示に使う手配書の型 -->
+                        <img
+                            src="https://stat.ameba.jp/user_images/20170727/12/neo-izayoi-onepiece/5f/e0/j/o0636096013991537524.jpg?caw=800"
+                            class="score_image right"
+                        />
+                        <img
+                            src="https://stat.ameba.jp/user_images/20170727/12/neo-izayoi-onepiece/5f/e0/j/o0636096013991537524.jpg?caw=800"
+                            class="score_image left"
+                        />
+                        <!-- スコア表示のスライドで切り替える画像 -->
+                        <img src="" class="" />
+                        <!-- 実際のスコア -->
+                        <!-- 左側のスコア WPM -->
+                        <p class="score WPM"></p>
+                        <!-- 右側のスコア 正答率 -->
+                        <div class="score percent"></div>
+                        <!-- 中央のランク -->
+                        <!-- <div class = "lank">Aランク</div> -->
+                    </div>
+                    <img src="" class="fade" id="my_image" />
+                </div>
+            </div>
+        </div>
+        <div class="into" id="into"></div>
+        <footer class="footer">
+            <div class="footer_left">
+                <img
+                    src="https://external-preview.redd.it/RiR0Pf4oFCvJ0z-ijtI3eNWQhOkuK3JpjnMRZuWexds.png?auto=webp&s=44368270cda8e279947f85c639ef03479f5d36de"
+                    alt=""
+                    class="footer_logo"
+                />
+            </div>
+            <div class="footer_middle">
+                <img src="https://1.bp.blogspot.com/-mZpzgXC1Sxk/YAOTCAKwWTI/AAAAAAABdOM/5B4hXli0KLU5N-BySHgjVbhZscKLSE-bQCNcBGAsYHQ/s200/onepiece04_usopp_sogeking.png" class="illust" />
+                <img src="https://1.bp.blogspot.com/-rzRcgoXDqEg/YAOTCKoCpPI/AAAAAAABdOI/5Bl3_zhOxm07TUGzW8_83cXMOT9yy1VJwCNcBGAsYHQ/s200/onepiece02_zoro_bandana.png" class="illust" />
+                <img src="https://1.bp.blogspot.com/-uxIsaN0S5lQ/X-FcrvAAInI/AAAAAAABdD4/6uw_qNUh9dQrG0aUzIExybt84yTEmXOPwCNcBGAsYHQ/s200/onepiece01_luffy.png" class="illust" />
+                <img src="https://1.bp.blogspot.com/-2ut_UQv3iss/X-Fcs_0oAII/AAAAAAABdD8/jrCZTd_xK-Y6CP1KwOtT_LpEpjp-1nvxgCNcBGAsYHQ/s200/onepiece03_nami.png" class="illust" />
+                <img src="https://1.bp.blogspot.com/-HPG_x7XPky8/X-FctLTLkKI/AAAAAAABdEE/xs4T8m0FiBAFptXHGQhQ2c9ZmVWtaeQSgCNcBGAsYHQ/s200/onepiece05_sanji.png" class="illust" />
+            </div>
+            <div class="footer_right">©sawao</div>
+        </footer>
+        <script src="main.js"></script>
+        <script src="script.js"></script>
+    </body>
+</html>

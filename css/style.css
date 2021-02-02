@@ -1,0 +1,155 @@
+/* 全体のスタイル */
+body{
+    padding: 0;
+    margin: 0;
+    background-color:black;
+}
+ul{
+    margin-block-start: 0;
+    padding-inline-start: 0;
+    margin-block-end: 0;
+}
+
+/* headerのスタイル */
+.header_top{
+    z-index: 10;   /*一番前に来るようにする*/
+    overflow: hidden;
+    background-color: rgb(0, 0, 0);
+    position:fixed;
+    top: 0;
+    width: 100%;
+    left: 0;
+    height: 100px;
+    display: flex;
+}
+.header_left_logo{
+    position: absolute;
+    height: 75px;
+    transform: translate(-50%,-50%);
+   top: 50%;
+   left: 5%;
+}
+.header_middle_logo{
+    position: absolute;
+    top: 0;
+    left: 50%;
+    height: 100px;
+    transform:scale(2,2) translateX(-25%);
+}
+.header_right_ul{
+    /* background-color:red; */
+    color:white;
+    position: absolute;
+    width: 15%;
+    height: 100%;
+    top: 0;
+    right:5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    list-style: none;
+}
+.header_right_li a{
+    text-decoration: none;
+    color: white;
+}
+.header_right_li a:hover{
+    color:red;
+}
+
+.header_main{
+    position: relative;
+    background-image: url("http://file.onepiece.ria10.com/OnePiece2_Wallpaper_1600x1200.jpg");
+    height: 690px;
+    margin-top: 100px;
+    background-size: cover;
+}
+.header_main_logo{
+    position: absolute;
+    top: -10%;
+    left: 50%;
+    transform: scale(0.5,0.5) translateX(-100%);
+}
+.play_btn{
+    text-decoration: none;
+}
+
+/* mainのゲームへクリック部分のスタイル */
+.main{
+    padding-top: 150px;
+    height: 640px;
+    background-color: black;
+}
+
+/* intoクラス 紹介ゾーンを作る */
+/* .into{
+    height:690px;
+    background-color: red;
+} */
+
+/* footer */
+.footer{
+    box-sizing: border-box;
+    border-top: 1px solid white;
+    padding: 0 30px;
+    height: 100px;
+    background-color: black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.footer_logo{
+    height: 50px;
+}
+.illust{
+    margin: 0 20px;
+    height: 50px;
+}
+
+/* アニメーション定義ゾーン */
+.fade{
+    animation:fadeIn 1s ease 1 normal;
+}
+.fade_low{
+    animation:fadeIn 3s ease 1 normal;
+}
+.fade_low_low{
+    animation:fadeIn 5s ease 1 normal;
+}
+.slidein{
+    animation:slideIn 1s ease 1 normal;
+}
+.slidebtn{
+    animation:slidebtn 2s ease-out 1 normal;
+}
+
+@keyframes fadeIn{
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+@keyframes slideIn{
+    0%{
+        transform: translateY(-100%);
+    }
+    100%{
+        transform: translateY(0);
+    }
+}
+@keyframes slidebtn{
+    0%{
+        transform: translate(-50%,-300%);
+    }
+    50%{
+        transform: translate(-50%,-50%);
+    }
+    80%{
+        transform: translate(-50%,-75%);
+    }
+    100%{
+        transform: translate((-50%,-50%));
+    }
+}
