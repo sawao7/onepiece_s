@@ -10,17 +10,22 @@ const display_div = document.querySelector(".display");
 const japanese_h1 = document.querySelector("#japanese");
 const word_h2 = document.querySelector("#word");
 const scores_div = document.querySelector(".scores");
+//手配書写真
+const left_picture = document.querySelector(".left_picture");
+const right_picture = document.querySelector(".right_picture");
+//ココまで
 const wpm_p = document.querySelector(".WPM"); //divのつもりだったがpでスタイルを設定してしまった
 const percent_div = document.querySelector(".percent");
 const my_image = document.querySelector("#my_image");
 const close_btn = document.querySelector(".close");
+const score_people_image = document.querySelector(".score_people_image"); //エンディング ランクの画像要素
+const score_lank_div = document.querySelector(".score_lank");
 
 //ゲーム要素の指定
 let ready_time = 3; //カウントダウン 3秒に設定
 let time_limit = 60; //時間制限 60秒
 let total_score = 0; //全体のスコア
 let correct = 0; //正解タイプ数
-let correct_bonus = 0; //名言のフレーズごとにボーナス
 let mistake = 0; //ミスタイプ数
 let current_type = 0; //現在の名言のあってるタイプ数
 let current_answer; //現在のタイプの正解
@@ -33,9 +38,6 @@ let all_close = false; //すべて消す trueになるとすべて消す
 let efffect_1 = new Audio("music/effect_1.mp3");
 //エンディング音楽
 let end_music_1 = new Audio("music/end_music_1.mp3");
-
-
-
 
 //close_btnをクリックしたらすべて消す
 close_btn.addEventListener("click", function () {
@@ -55,21 +57,17 @@ close_btn.addEventListener("click", function () {
 start_btn.addEventListener("click", function () {
     // onepiece キャラのボイス
     let char_voices =
-        "music/sound_1.mp3 music/sound_2.mp3 music/sound_3.mp3 music/sound_4.mp3 music/sound_5.mp3 music/sound_6.mp3 music/sound_7.mp3 music/sound_8.mp3 music/sound_9.mp3 music/sound_10.mp3 music/sound_11.mp3 music/sound_12.mp3 music/sound_13.mp3";
-
-    // 画像 一旦 集めてみた カラー限定
-    let images_dimo =
-        "https://livedoor.blogimg.jp/yossikuppa/imgs/0/f/0f5f0f37.jpg https://pbs.twimg.com/media/DxHy7oLUcAAZ9Zk.jpg https://5656-onepiece.up.seesaa.net/image/B19477A3-E073-4667-BDAB-438C1B50AEDE-thumbnail2.jpg https://pics.prcm.jp/01011214/49794337/jpeg/49794337.jpeg https://i.gyazo.com/b438ecdecba750833a98d324ef02e5b6.png  https://d2l930y2yx77uc.cloudfront.net/production/uploads/images/21990220/picture_pc_fd34ba0a6635efabbfb7920d43d8ff4a.jpeg?width=800";
+        "music/sound_1.mp3 music/sound_2.mp3 music/sound_3.mp3 music/sound_4.mp3 music/sound_5.mp3 music/sound_6.mp3 music/sound_7.mp3 music/sound_8.mp3 music/sound_9.mp3 music/sound_10.mp3 music/sound_11.mp3 music/sound_12.mp3 music/sound_13.mp3 music/sound_14.mp3 music/sound_15.mp3 music/sound_16.mp3 music/sound_17.mp3";
 
     //画像 本番
     let images_source =
-        "https://livedoor.blogimg.jp/yossikuppa/imgs/0/f/0f5f0f37.jpg https://wordstacks.nocebo.jp/storage/posts/164/0.webp?undefined https://pbs.twimg.com/media/EZv6az_UcAAnSuF.jpg https://blogimg.goo.ne.jp/user_image/08/03/38f1cb9728db1938405b70898d8fcc7b.png https://i.gyazo.com/042fded2457c57f1f7007e0c2f7949f8.jpg https://d2l930y2yx77uc.cloudfront.net/production/uploads/images/21990220/picture_pc_fd34ba0a6635efabbfb7920d43d8ff4a.jpeg?width=800 https://pics.prcm.jp/01011214/49794337/jpeg/49794337_480x374.jpeg https://i.gyazo.com/b438ecdecba750833a98d324ef02e5b6.png https://blogimg.goo.ne.jp/user_image/5b/7a/439e2115d0d4fdc1078ff35004098383.png https://i.gyazo.com/c4fd8740191d3935df8eae71eccd413e.jpg https://i.gyazo.com/9857b483e10391a82b6be06f2ea6c9a0.jpg https://livedoor.blogimg.jp/yossikuppa/imgs/d/3/d3da83ad-s.jpg https://i.gyazo.com/fbb57e26aa111a2d105626e52e190ab4.jpg";
+        "https://livedoor.blogimg.jp/yossikuppa/imgs/0/f/0f5f0f37.jpg https://wordstacks.nocebo.jp/storage/posts/164/0.webp?undefined https://pbs.twimg.com/media/EZv6az_UcAAnSuF.jpg https://blogimg.goo.ne.jp/user_image/08/03/38f1cb9728db1938405b70898d8fcc7b.png https://i.gyazo.com/042fded2457c57f1f7007e0c2f7949f8.jpg https://d2l930y2yx77uc.cloudfront.net/production/uploads/images/21990220/picture_pc_fd34ba0a6635efabbfb7920d43d8ff4a.jpeg?width=800 https://pics.prcm.jp/01011214/49794337/jpeg/49794337_480x374.jpeg https://i.gyazo.com/b438ecdecba750833a98d324ef02e5b6.png https://blogimg.goo.ne.jp/user_image/5b/7a/439e2115d0d4fdc1078ff35004098383.png https://i.gyazo.com/c4fd8740191d3935df8eae71eccd413e.jpg https://i.gyazo.com/9857b483e10391a82b6be06f2ea6c9a0.jpg https://livedoor.blogimg.jp/yossikuppa/imgs/d/3/d3da83ad-s.jpg https://i.gyazo.com/fbb57e26aa111a2d105626e52e190ab4.jpg https://blogimg.goo.ne.jp/user_image/23/90/f2bb3960662825b1e309763246128184.png https://pbs.twimg.com/media/DxHy7oLUcAAZ9Zk.jpg https://stat.ameba.jp/user_images/20170331/23/1013takechang/77/63/p/o0600068613902931662.png https://i.gyazo.com/fc93e46bd6cfd7dc156efd17b92fd726.png";
 
     //名言 必ずスペースでくぎる
     let onepiece_ja_1_source =
-        "海賊王に、俺はなる！ この海で一番自由な奴が海賊王だ！ 女の嘘は、許すのが男だ 力に屈したら男に生まれた意味がねえだろう 本心を、言えよ！ 今の時代を作れるのは、今を生きてる人間だけだよ 人の夢は!終わらねえ! 人はいつ死ぬと思う...人に忘れられた時さ！ 俺は友達を傷つける奴は許さない！ 未来を変える権利は皆平等にあるんだよ！ 俺は一生神には祈らねえ！ いきなりキングは取れねエだろうよい 勝者だけが正義だ！";
+        "海賊王に、俺はなる！ この海で一番自由なのが海賊王だ！ 女の嘘は、許すのが男だ 力に屈したら男に生まれた意味がねえだろう 本心を、言えよ！ 今の時代を作れるのは、今を生きてる人間だけだよ 人の夢は!終わらねえ! 人はいつ死ぬと思う...人に忘れられた時さ！ 俺は友達を傷つける奴は許さない！ 未来を変える権利は皆平等にあるんだよ！ 俺は一生神には祈らねえ！ いきなりキングは取れねエだろうよい 勝者だけが正義だ！ 男が一度！必ず帰ると言ったのだから！ 愛してくれて...ありがとう！ 長い間！くそお世話になりました！ この帽子をお前に預ける";
     let onepiece_en_1_source =
-        "kaizokuouni,orehanaru! konoumideitibannziyuunayatugakaizokuouda! onnnanousoha,yurusunogaotokoda tikaranikussitaraotokoniumaretaimiganeedarou honnsinnwo,ieyo! imanozidaiwotukurerunoha,imawoikiteruninngenndakedayo hitonoyumeha!owaranee! hitohaitusinutoomou...hitoniwasureraretatokisa! orehatomodatiwokizutukeruyatuhayurusanai! miraiwokaerukennrihaminabyoudouniarunndayo! orehaissyoukaminihainoranee! ikinarikinnguhatoreneedarouyoi syousyadakegaseigida!";
+        "kaizokuouni,orehanaru! konoumideitibannziyuunanogakaizokuouda! onnnanousoha,yurusunogaotokoda tikaranikussitaraotokoniumaretaimiganeedarou honnsinnwo,ieyo! imanozidaiwotukurerunoha,imawoikiteruninngenndakedayo hitonoyumeha!owaranee! hitohaitusinutoomou...hitoniwasureraretatokisa! orehatomodatiwokizutukeruyatuhayurusanai! miraiwokaerukennrihaminabyoudouniarunndayo! orehaissyoukaminihainoranee! ikinarikinnguhatoreneedarouyoi syousyadakegaseigida! otokogaitido!kanarazukaerutoittanodakara! aisitekurete...arigatou! nagaiaida!kusoosewaninarimasita! konobousiwoomaeniazukeru";
     //ここまで名言
 
     // 正規表現 スペースで区切るようにしている
@@ -78,6 +76,7 @@ start_btn.addEventListener("click", function () {
     onepiece_en_1_source = onepiece_en_1_source.split(pattern);
     images_source = images_source.split(pattern);
     char_voices = char_voices.split(pattern);
+
     // ここまで正規表現
 
     //onepieceキャラのボイスをAudio形式に変換して、リストに格納
@@ -156,7 +155,6 @@ function GameStart() {
     //諸々初期化
     total_score = 0;
     correct = 0;
-    correct_bonus = 0;
     mistake = 0;
     //Question()へ行く
     Question();
@@ -233,6 +231,46 @@ function Question() {
 
 //GameFinish()の定義 ゲームを終了した後の後処理やスコア表示を行う
 function GameFinish() {
+    //手配書スライドゾーン
+    let images_people =
+        "https://i.gyazo.com/48a458a6bb4232afc93aa496f2bf31f6.png https://i.gyazo.com/911db10da4e814b06197fc3d24717391.png https://i.gyazo.com/145cb8fd0409164c4ffd6f53777281f8.png https://i.gyazo.com/9b331e6ddabe190689849825321a83d8.png https://i.gyazo.com/6ed4984ac40e8ec0a1bfe4fd9f90dd57.png https://i.gyazo.com/e1232d7733af5d42ec5fbb2f22c98d73.png https://i.gyazo.com/6054b15ce702fe80782291d698cca2a6.png https://i.gyazo.com/2c7bb4b39135159aabf84f105ee9cf80.png https://i.gyazo.com/b3ede0b5ebebdd8322c00bf8a64fe591.png https://i.gyazo.com/ea235f8eab83cbb57ddc07b2974a8d0b.png";
+    let original_pattern = /[ ]/;
+    images_people = images_people.split(original_pattern);
+    let original_count = 0;
+    let original_count_clone = 0;
+    let image_timer = setInterval(() => {
+        console.log(original_count);
+        right_picture.classList.add("wide_2");
+        right_picture.classList.remove("wide_2_over");
+        right_picture.setAttribute("src", images_people[original_count]);
+        left_picture.classList.add("wide_2");
+        left_picture.classList.remove("wide_2_over");
+        if (original_count == images_people.length - 1) {
+            left_picture.setAttribute("src", images_people[0]);
+        } else {
+            left_picture.setAttribute("src", images_people[original_count + 1]);
+        }
+        original_count++;
+        if (original_count == images_people.length) {
+            original_count = 0;
+        }
+        let iamge_timer_and = setInterval(() => {
+            console.log(original_count_clone + "clone");
+            if (original_count_clone == 3) {
+                right_picture.classList.add("wide_2_over");
+                left_picture.classList.add("wide_2_over");
+                clearInterval(iamge_timer_and);
+                original_count_clone = -1;
+            } else if (original_count_clone == 1) {
+                right_picture.classList.remove("wide_2");
+                left_picture.classList.remove("wide_2");
+            }
+            console.log(original_count_clone);
+            original_count_clone++;
+        }, 1000);
+    }, 5000);
+    //ココまで
+
     //effect_1を止める
     efffect_1.pause();
     efffect_1.currentTime = 0;
@@ -248,7 +286,45 @@ function GameFinish() {
     //main_imageにendding_imageクラスを追加し、位置をずらす
     main_image.classList.add("endding_image");
     //total_scoreの定義
-    total_score = 0;
+    total_score = correct * Math.pow(correct / (correct + mistake), 3);
+    console.log(total_score);
+    //total_scoreに応じて画像を変える
+    //画像のリストの定義
+    let my_pattern = /[ ]/;
+    let score_people_images =
+        "https://i.gyazo.com/9e8a0999a1830af74ddf7920ac722375.png https://i.gyazo.com/73beeaf38ebc80366a8ea2c1e67bfbd7.png https://i.gyazo.com/8ed8dab83711b4f8ca6072ce99a8c7b4.jpg https://i.gyazo.com/02c61d2271882ed7c5a56e1267fbf6f8.png https://i.gyazo.com/2e1223099e8cdd85c1b68b99e04e1d2a.png https://i.gyazo.com/2d3a8864dc244cb545cb34f6ffb85746.png https://i.gyazo.com/26ce083bb5c9949b65b80a2c810648be.png https://i.gyazo.com/dfbb40c296433316ed8073f9dcffb933.png https://i.gyazo.com/a83d707e8036685d11fb7a93302e0f2b.jpg https://i.gyazo.com/ee1eddcbb46efd10fb54c939448923eb.png";
+    score_people_images = score_people_images.split(my_pattern);
+    if (total_score >= 450) {
+        score_people_image.setAttribute("src", score_people_images[0]);
+        score_lank_div.innerHTML = "海賊王";
+    } else if (total_score >= 400) {
+        score_people_image.setAttribute("src", score_people_images[1]);
+        score_lank_div.innerHTML = "世界最強の男";
+    } else if (total_score >= 350) {
+        score_people_image.setAttribute("src", score_people_images[2]);
+        score_lank_div.innerHTML = "四皇";
+    } else if (total_score >= 300) {
+        score_people_image.setAttribute("src", score_people_images[3]);
+        score_lank_div.innerHTML = "５番目の皇帝";
+    } else if (total_score >= 250) {
+        score_people_image.setAttribute("src", score_people_images[4]);
+        score_lank_div.innerHTML = "四皇の幹部";
+    } else if (total_score >= 200) {
+        score_people_image.setAttribute("src", score_people_images[5]);
+        score_lank_div.innerHTML = "七武海";
+    } else if (total_score >= 150) {
+        score_people_image.setAttribute("src", score_people_images[6]);
+        score_lank_div.innerHTML = "最悪の世代";
+    } else if (total_score >= 100) {
+        score_people_image.setAttribute("src", score_people_images[7]);
+        score_lank_div.innerHTML = "我が神なり";
+    } else if (total_score >= 50) {
+        score_people_image.setAttribute("src", score_people_images[8]);
+        score_lank_div.innerHTML = "友情の盆暮れ";
+    } else {
+        score_people_image.setAttribute("src", score_people_images[9]);
+        score_lank_div.innerHTML = "東の海の赤鼻";
+    }
     // スコア全体の表示
     scores_div.style.display = "block";
     //WPMを代入
@@ -302,8 +378,6 @@ document.addEventListener("keypress", (event) => {
         efffect_1.play();
         //現在のあってるタイプ数を初期化
         current_type = 0;
-        //ボーナスを＋1
-        correct_bonus++;
         //名言リストから日本語、英語、画像、音声それぞれ削除
         onepiece_ja_1.splice(random, 1);
         onepiece_en_1.splice(random, 1);
