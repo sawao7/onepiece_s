@@ -239,7 +239,6 @@ function GameFinish() {
     let original_count = 0;
     let original_count_clone = 0;
     let image_timer = setInterval(() => {
-        console.log(original_count);
         right_picture.classList.add("wide_2");
         right_picture.classList.remove("wide_2_over");
         right_picture.setAttribute("src", images_people[original_count]);
@@ -255,7 +254,6 @@ function GameFinish() {
             original_count = 0;
         }
         let iamge_timer_and = setInterval(() => {
-            console.log(original_count_clone + "clone");
             if (original_count_clone == 3) {
                 right_picture.classList.add("wide_2_over");
                 left_picture.classList.add("wide_2_over");
