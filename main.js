@@ -36,6 +36,7 @@ let all_close = false; //すべて消す trueになるとすべて消す
 
 //ゲームの効果音
 let efffect_1 = new Audio("music/effect_1.mp3");
+let opening_1 = new Audio("music/opening.mp3");
 //エンディング音楽
 let end_music_1 = new Audio("music/end_music_1.mp3");
 
@@ -57,17 +58,17 @@ close_btn.addEventListener("click", function () {
 start_btn.addEventListener("click", function () {
     // onepiece キャラのボイス
     let char_voices =
-        "music/sound_1.mp3 music/sound_2.mp3 music/sound_3.mp3 music/sound_4.mp3 music/sound_5.mp3 music/sound_6.mp3 music/sound_7.mp3 music/sound_8.mp3 music/sound_9.mp3 music/sound_10.mp3 music/sound_11.mp3 music/sound_12.mp3 music/sound_13.mp3 music/sound_14.mp3 music/sound_15.mp3 music/sound_16.mp3 music/sound_17.mp3";
+        "music/sound_1.mp3 music/sound_2.mp3 music/sound_3.mp3 music/sound_4.mp3 music/sound_5.mp3 music/sound_6.mp3 music/sound_7.mp3 music/sound_8.mp3 music/sound_9.mp3 music/sound_10.mp3 music/sound_11.mp3 music/sound_12.mp3 music/sound_13.mp3 music/sound_14.mp3 music/sound_15.mp3 music/sound_16.mp3 music/sound_17.mp3 music/sound_18.mp3 music/sound_19.mp3 music/sound_20.mp3 music/sound_21.mp3 music/sound_22.mp3";
 
     //画像 本番
     let images_source =
-        "https://livedoor.blogimg.jp/yossikuppa/imgs/0/f/0f5f0f37.jpg https://wordstacks.nocebo.jp/storage/posts/164/0.webp?undefined https://pbs.twimg.com/media/EZv6az_UcAAnSuF.jpg https://blogimg.goo.ne.jp/user_image/08/03/38f1cb9728db1938405b70898d8fcc7b.png https://i.gyazo.com/042fded2457c57f1f7007e0c2f7949f8.jpg https://d2l930y2yx77uc.cloudfront.net/production/uploads/images/21990220/picture_pc_fd34ba0a6635efabbfb7920d43d8ff4a.jpeg?width=800 https://pics.prcm.jp/01011214/49794337/jpeg/49794337_480x374.jpeg https://i.gyazo.com/b438ecdecba750833a98d324ef02e5b6.png https://blogimg.goo.ne.jp/user_image/5b/7a/439e2115d0d4fdc1078ff35004098383.png https://i.gyazo.com/c4fd8740191d3935df8eae71eccd413e.jpg https://i.gyazo.com/9857b483e10391a82b6be06f2ea6c9a0.jpg https://livedoor.blogimg.jp/yossikuppa/imgs/d/3/d3da83ad-s.jpg https://i.gyazo.com/fbb57e26aa111a2d105626e52e190ab4.jpg https://blogimg.goo.ne.jp/user_image/23/90/f2bb3960662825b1e309763246128184.png https://pbs.twimg.com/media/DxHy7oLUcAAZ9Zk.jpg https://stat.ameba.jp/user_images/20170331/23/1013takechang/77/63/p/o0600068613902931662.png https://i.gyazo.com/fc93e46bd6cfd7dc156efd17b92fd726.png";
+        "https://livedoor.blogimg.jp/yossikuppa/imgs/0/f/0f5f0f37.jpg https://wordstacks.nocebo.jp/storage/posts/164/0.webp?undefined https://pbs.twimg.com/media/EZv6az_UcAAnSuF.jpg https://blogimg.goo.ne.jp/user_image/08/03/38f1cb9728db1938405b70898d8fcc7b.png https://i.gyazo.com/042fded2457c57f1f7007e0c2f7949f8.jpg https://d2l930y2yx77uc.cloudfront.net/production/uploads/images/21990220/picture_pc_fd34ba0a6635efabbfb7920d43d8ff4a.jpeg?width=800 https://pics.prcm.jp/01011214/49794337/jpeg/49794337_480x374.jpeg https://i.gyazo.com/b438ecdecba750833a98d324ef02e5b6.png https://blogimg.goo.ne.jp/user_image/5b/7a/439e2115d0d4fdc1078ff35004098383.png https://i.gyazo.com/c4fd8740191d3935df8eae71eccd413e.jpg https://i.gyazo.com/9857b483e10391a82b6be06f2ea6c9a0.jpg https://livedoor.blogimg.jp/yossikuppa/imgs/d/3/d3da83ad-s.jpg https://i.gyazo.com/fbb57e26aa111a2d105626e52e190ab4.jpg https://blogimg.goo.ne.jp/user_image/23/90/f2bb3960662825b1e309763246128184.png https://pbs.twimg.com/media/DxHy7oLUcAAZ9Zk.jpg https://stat.ameba.jp/user_images/20170331/23/1013takechang/77/63/p/o0600068613902931662.png https://i.gyazo.com/fc93e46bd6cfd7dc156efd17b92fd726.png https://assets.st-note.com/production/uploads/images/35665889/rectangle_large_type_2_4d4ba9f3c7ded1a3901371e57a68780c.png?fit=bounds&quality=85&width=1280 https://pbs.twimg.com/media/C8cFX9oVwAExTWy.jpg https://i.gyazo.com/ead144fc665046859336eee23bce30c5.jpg https://i.gyazo.com/ff933ddcb80f4e1a892d02d621c7afd8.jpg https://i.gyazo.com/ef2571986d477e94525b3fd488b7b871.jpg";
 
     //名言 必ずスペースでくぎる
     let onepiece_ja_1_source =
-        "海賊王に、俺はなる！ この海で一番自由なのが海賊王だ！ 女の嘘は、許すのが男だ 力に屈したら男に生まれた意味がねえだろう 本心を、言えよ！ 今の時代を作れるのは、今を生きてる人間だけだよ 人の夢は!終わらねえ! 人はいつ死ぬと思う...人に忘れられた時さ！ 俺は友達を傷つける奴は許さない！ 未来を変える権利は皆平等にあるんだよ！ 俺は一生神には祈らねえ！ いきなりキングは取れねエだろうよい 勝者だけが正義だ！ 男が一度！必ず帰ると言ったのだから！ 愛してくれて...ありがとう！ 長い間！くそお世話になりました！ この帽子をお前に預ける";
+        "海賊王に、俺はなる！ この海で一番自由なのが海賊王だ！ 女の嘘は、許すのが男だ 力に屈したら男に生まれた意味がねえだろう 本心を、言えよ！ 今の時代を作れるのは、今を生きてる人間だけだよ 人の夢は!終わらねえ! 人はいつ死ぬと思う...人に忘れられた時さ！ 俺は友達を傷つける奴は許さない！ 未来を変える権利は皆平等にあるんだよ！ 俺は一生神には祈らねえ！ いきなりキングは取れねエだろうよい 勝者だけが正義だ！ 男が一度！必ず帰ると言ったのだから！ 愛してくれて...ありがとう！ 長い間！くそお世話になりました！ この帽子をお前に預ける 造った船に！男はドンと胸を張れ！ 人は'心'だろうが！ 死ぬことは恩返しじゃねえぞ！ ほらな、折れねえ やめときな、正義だ悪だと口にするのは！";
     let onepiece_en_1_source =
-        "kaizokuouni,orehanaru! konoumideitibannziyuunanogakaizokuouda! onnnanousoha,yurusunogaotokoda tikaranikussitaraotokoniumaretaimiganeedarou honnsinnwo,ieyo! imanozidaiwotukurerunoha,imawoikiteruninngenndakedayo hitonoyumeha!owaranee! hitohaitusinutoomou...hitoniwasureraretatokisa! orehatomodatiwokizutukeruyatuhayurusanai! miraiwokaerukennrihaminabyoudouniarunndayo! orehaissyoukaminihainoranee! ikinarikinnguhatoreneedarouyoi syousyadakegaseigida! otokogaitido!kanarazukaerutoittanodakara! aisitekurete...arigatou! nagaiaida!kusoosewaninarimasita! konobousiwoomaeniazukeru";
+        "kaizokuouni,orehanaru! konoumideitibannziyuunanogakaizokuouda! onnnanousoha,yurusunogaotokoda tikaranikussitaraotokoniumaretaimiganeedarou honnsinnwo,ieyo! imanozidaiwotukurerunoha,imawoikiteruninngenndakedayo hitonoyumeha!owaranee! hitohaitusinutoomou...hitoniwasureraretatokisa! orehatomodatiwokizutukeruyatuhayurusanai! miraiwokaerukennrihaminabyoudouniarunndayo! orehaissyoukaminihainoranee! ikinarikinnguhatoreneedarouyoi syousyadakegaseigida! otokogaitido!kanarazukaerutoittanodakara! aisitekurete...arigatou! nagaiaida!kusoosewaninarimasita! konobousiwoomaeniazukeru tukuttahuneni!otokohadonntomunewohare! hitohakokorodarouga! sinukotohaonngaesizyaneezo! horana,orenee yametokina,seigidaakudatokutinisurunoha!";
     //ここまで名言
 
     // 正規表現 スペースで区切るようにしている
@@ -99,6 +100,11 @@ start_btn.addEventListener("click", function () {
     main_image.style.display = "none";
     start_btn.style.display = "none";
     end_image.style.display = "none";
+    //end_iamgeの画像をcontinuedに設定
+    end_image.setAttribute(
+        "src",
+        "https://i.pinimg.com/originals/65/eb/70/65eb70a4aad8ceb926b44cc4d6e7fdd9.jpg"
+    );
     //スコア全体を消す
     scores_div.style.display = "none";
     //timer要素に値を代入
@@ -115,6 +121,10 @@ function ready() {
     word_h2.innerHTML = "";
     count_div.innerHTML = "";
     my_image.setAttribute("src", "");
+
+    //オープニングのロジャーの声を流す 長すぎて途中で切れる 難点
+    // opening_1.play();
+
     //カウントダウンの関数
     let ready_timer = setInterval(function () {
         if (ready_time_clone == 1) {
@@ -272,6 +282,8 @@ function GameFinish() {
     //effect_1を止める
     efffect_1.pause();
     efffect_1.currentTime = 0;
+    //エンディングボリューム調整
+    end_music_1.volume = 0.3;
     //エンディングを流す
     end_music_1.play();
     //end_image要素の画像をエンディング画像に変更
